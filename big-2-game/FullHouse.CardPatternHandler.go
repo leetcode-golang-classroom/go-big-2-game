@@ -72,9 +72,9 @@ func (fullHouseCardPatternHdr *FullHouseCardPatternHandler) CheckCardPattern(top
 	if len(topPlay) == 0 ||
 		fullHouseCardPatternHdr.FindFullHouseLargestCard(topPlay).
 			IsLess(fullHouseCardPatternHdr.FindFullHouseLargestCard(show)) {
-		ioWriter.WriteString(fmt.Sprintf("玩家 %v 打出了 順子 %v %v %v %v %v\n", player.GetName(), show[0], show[1], show[2], show[3], show[4]))
+		ioWriter.WriteString(fmt.Sprintf("玩家 %v 打出了 葫蘆 %v %v %v %v %v\n", player.GetName(), show[0], show[1], show[2], show[3], show[4]))
 		return true
 	}
-	ioWriter.WriteString("fullhouse:此牌型不合法，請再嘗試一次。\n")
+	ioWriter.WriteString("此牌型不合法，請再嘗試一次。\n")
 	return false
 }

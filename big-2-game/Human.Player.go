@@ -40,12 +40,12 @@ func (humanPlayer *HumanPlayer) Play(topPlay []*Card, cardPatternHdr CardPattern
 		cardsLine := strings.TrimSpace(readline)
 		isPass := strings.Compare(cardsLine, "-1") == 0
 		if isPass && len(topPlay) != 0 {
-			humanPlayer.ioWriter.WriteString(fmt.Sprintf("玩家 %v PASS\n", humanPlayer.GetName()))
+			humanPlayer.ioWriter.WriteString(fmt.Sprintf("玩家 %v PASS.\n", humanPlayer.GetName()))
 			isShowCorrect = true
 			return []*Card{}
 		}
 		if isPass && len(topPlay) == 0 {
-			humanPlayer.ioWriter.WriteString("你不能在新的回合中喊 PASS\n")
+			humanPlayer.ioWriter.WriteString("你不能在新的回合中喊 PASS.\n")
 			isShowCorrect = false
 			continue
 		}

@@ -62,9 +62,11 @@ func (player *Player) DisplayHand() (string, string) {
 			cardString += " "
 		}
 		indexString := fmt.Sprintf("%v", idx)
-		diff := len(cardString) - len(indexString)
-		for i := 0; i < diff; i++ {
-			indexString += " "
+		if idx != len(player.hands)-1 {
+			diff := len(cardString) - len(indexString)
+			for i := 0; i < diff; i++ {
+				indexString += " "
+			}
 		}
 		indexLine += indexString
 		cardsLine += cardString
