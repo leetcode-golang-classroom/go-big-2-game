@@ -32,9 +32,10 @@ func (humanPlayer *HumanPlayer) NameSelf() {
 func (humanPlayer *HumanPlayer) Play(topPlay []*Card, cardPatternHdr CardPatternHandlerInterface) []*Card {
 	isShowCorrect := false
 	var readline string
-	humanPlayer.DisplayHandAndName()
+	humanPlayer.DisplayName()
 	result := []*Card{}
 	for !isShowCorrect {
+		humanPlayer.DisplayOnlyHand()
 		lines, _, _ := humanPlayer.ioReader.ReadLine()
 		readline = string(lines)
 		cardsLine := strings.TrimSpace(readline)
@@ -45,7 +46,7 @@ func (humanPlayer *HumanPlayer) Play(topPlay []*Card, cardPatternHdr CardPattern
 			return []*Card{}
 		}
 		if isPass && len(topPlay) == 0 {
-			humanPlayer.ioWriter.WriteString("你不能在新的回合中喊 PASS.\n")
+			humanPlayer.ioWriter.WriteString("你不能在新的回合中喊 PASS\n")
 			isShowCorrect = false
 			continue
 		}
@@ -72,18 +73,21 @@ func (humanPlayer *HumanPlayer) ParesInputToShow(cardsLine string) ([]*Card, []i
 	})
 	return shows, nIdxes
 }
-func (humanPlayer *HumanPlayer) DisplayHandAndName() {
-	humanPlayer.ioWriter.WriteString(fmt.Sprintf("輪到%v了\n", humanPlayer.GetName()))
+func (humanPlayer *HumanPlayer) DisplayOnlyHand() {
 	indexLine, handsLine := humanPlayer.DisplayHand()
 	humanPlayer.ioWriter.WriteString(fmt.Sprintf("%v\n", indexLine))
 	humanPlayer.ioWriter.WriteString(fmt.Sprintf("%v\n", handsLine))
 }
+func (humanPlayer *HumanPlayer) DisplayName() {
+	humanPlayer.ioWriter.WriteString(fmt.Sprintf("輪到%v了\n", humanPlayer.GetName()))
+}
 func (humanPlayer *HumanPlayer) InitPlay(topPlay []*Card, cardPatternHdr CardPatternHandlerInterface) []*Card {
-	humanPlayer.DisplayHandAndName()
+	humanPlayer.DisplayName()
 	isShowCorrect := false
 	var readline string
 	result := []*Card{}
 	for !isShowCorrect {
+		humanPlayer.DisplayOnlyHand()
 		lines, _, _ := humanPlayer.ioReader.ReadLine()
 		readline = string(lines)
 		cardsLine := strings.TrimSpace(readline)

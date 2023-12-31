@@ -24,6 +24,6 @@ func (singleCardPatternHdr *SingleCardPatternHandler) CheckCardPattern(topPlay [
 		ioWriter.WriteString(fmt.Sprintf("玩家 %v 打出了 單張 %v\n", player.GetName(), show[0]))
 		return true
 	}
-	ioWriter.WriteString("single:此牌型不合法，請再嘗試一次。\n")
+	ioWriter.WriteString("此牌型不合法，請再嘗試一次。\n")
 	return false
 }
