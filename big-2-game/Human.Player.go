@@ -50,7 +50,11 @@ func (humanPlayer *HumanPlayer) Play(topPlay []*Card, cardPatternHdr CardPattern
 			isShowCorrect = false
 			continue
 		}
-		shows, nIdxes := humanPlayer.ParesInputToShow(cardsLine)
+		shows, nIdxes, err := humanPlayer.ParesInputToShow(cardsLine)
+		if err != nil {
+			isShowCorrect = false
+			continue
+		}
 		isShowCorrect = cardPatternHdr.DoCheckCardPattern(topPlay, shows, humanPlayer, humanPlayer.ioWriter)
 		if isShowCorrect {
 			humanPlayer.ExtractCards(nIdxes)
@@ -60,19 +64,25 @@ func (humanPlayer *HumanPlayer) Play(topPlay []*Card, cardPatternHdr CardPattern
 	}
 	return result
 }
-func (humanPlayer *HumanPlayer) ParesInputToShow(cardsLine string) ([]*Card, []int) {
+func (humanPlayer *HumanPlayer) ParesInputToShow(cardsLine string) ([]*Card, []int, error) {
 	idxes := strings.Split(cardsLine, " ")
 	shows := []*Card{}
 	nIdxes := []int{}
 	for _, idx := range idxes {
-		num, _ := strconv.Atoi(idx)
+		num, err := strconv.Atoi(idx)
+		if err != nil {
+			return nil, nil, err
+		}
+		if num < -1 || num > len(humanPlayer.hands)-1 {
+			return nil, nil, fmt.Errorf("%v out of index range", num)
+		}
 		nIdxes = append(nIdxes, num)
 		shows = append(shows, humanPlayer.hands[num])
 	}
 	sort.Slice(shows, func(i, j int) bool {
 		return shows[i].IsLess(shows[j])
 	})
-	return shows, nIdxes
+	return shows, nIdxes, nil
 }
 func (humanPlayer *HumanPlayer) DisplayOnlyHand() {
 	indexLine, handsLine := humanPlayer.DisplayHand()
@@ -97,7 +107,11 @@ func (humanPlayer *HumanPlayer) InitPlay(topPlay []*Card, cardPatternHdr CardPat
 			isShowCorrect = false
 			continue
 		}
-		shows, nIdxes := humanPlayer.ParesInputToShow(cardsLine)
+		shows, nIdxes, err := humanPlayer.ParesInputToShow(cardsLine)
+		if err != nil {
+			isShowCorrect = false
+			continue
+		}
 		if strings.Compare(shows[0].String(), "C[3]") != 0 {
 			humanPlayer.ioWriter.WriteString("此牌型不合法，請再嘗試一次。\n")
 			humanPlayer.ioWriter.Flush()

@@ -6,12 +6,12 @@ import (
 )
 
 type ShowCardFromInputStrategy struct {
-	ShowCardStrategy
+	*ShowCardStrategy
 }
 
 func NewShowCardFromInputStrategy(showCardHdr ShowCardHandlerInterface) ShowCardStrategyInterface {
 	return &ShowCardFromInputStrategy{
-		ShowCardStrategy: ShowCardStrategy{
+		ShowCardStrategy: &ShowCardStrategy{
 			ShowCardHdr: showCardHdr,
 		},
 	}
