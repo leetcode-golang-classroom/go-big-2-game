@@ -7,8 +7,9 @@ import (
 
 type Player struct {
 	PlayerInterface
-	name  string
-	hands []*Card
+	name             string
+	hands            []*Card
+	ShowCardStrategy ShowCardStrategyInterface
 }
 
 type PlayerInterface interface {
@@ -26,10 +27,11 @@ type PlayerInterface interface {
 	GetSmallestHand() *Card
 }
 
-func NewPlayer() *Player {
+func NewPlayer(showCardStrategy ShowCardStrategyInterface) *Player {
 	return &Player{
-		hands: []*Card{},
-		name:  "",
+		hands:            []*Card{},
+		name:             "",
+		ShowCardStrategy: showCardStrategy,
 	}
 }
 func (player *Player) GetName() string {

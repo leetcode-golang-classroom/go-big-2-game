@@ -19,6 +19,7 @@ func TestWithTestCase1(t *testing.T) {
 	outputFile, _ := os.ReadFile(absOutputPath)
 	ioReader := bufio.NewReader(file)
 	ioWriter := bufio.NewWriter(&b)
+	showCardStrategy := big_2_game.NewShowCardFromInputStrategy(nil)
 	cardPatternHdr := big_2_game.NewSingleCardPatternHandelr(
 		big_2_game.NewPairCardPatternHandler(
 			big_2_game.NewStraightCardPatternHandler(
@@ -30,10 +31,10 @@ func TestWithTestCase1(t *testing.T) {
 	)
 
 	big2Game := big_2_game.NewGame(cardPatternHdr, []big_2_game.PlayerInterface{
-		big_2_game.NewHumanPlayer(ioReader, ioWriter),
-		big_2_game.NewHumanPlayer(ioReader, ioWriter),
-		big_2_game.NewHumanPlayer(ioReader, ioWriter),
-		big_2_game.NewHumanPlayer(ioReader, ioWriter),
+		big_2_game.NewHumanPlayer(ioReader, ioWriter, showCardStrategy),
+		big_2_game.NewHumanPlayer(ioReader, ioWriter, showCardStrategy),
+		big_2_game.NewHumanPlayer(ioReader, ioWriter, showCardStrategy),
+		big_2_game.NewHumanPlayer(ioReader, ioWriter, showCardStrategy),
 	},
 		big_2_game.NewDeck(),
 		ioReader,
@@ -55,6 +56,7 @@ func TestWithFullouse(t *testing.T) {
 	outputFile, _ := os.ReadFile(absOutputPath)
 	ioReader := bufio.NewReader(file)
 	ioWriter := bufio.NewWriter(&b)
+	showCardStrategy := big_2_game.NewShowCardFromInputStrategy(nil)
 	cardPatternHdr := big_2_game.NewSingleCardPatternHandelr(
 		big_2_game.NewPairCardPatternHandler(
 			big_2_game.NewStraightCardPatternHandler(
@@ -66,10 +68,10 @@ func TestWithFullouse(t *testing.T) {
 	)
 
 	big2Game := big_2_game.NewGame(cardPatternHdr, []big_2_game.PlayerInterface{
-		big_2_game.NewHumanPlayer(ioReader, ioWriter),
-		big_2_game.NewHumanPlayer(ioReader, ioWriter),
-		big_2_game.NewHumanPlayer(ioReader, ioWriter),
-		big_2_game.NewHumanPlayer(ioReader, ioWriter),
+		big_2_game.NewHumanPlayer(ioReader, ioWriter, showCardStrategy),
+		big_2_game.NewHumanPlayer(ioReader, ioWriter, showCardStrategy),
+		big_2_game.NewHumanPlayer(ioReader, ioWriter, showCardStrategy),
+		big_2_game.NewHumanPlayer(ioReader, ioWriter, showCardStrategy),
 	},
 		big_2_game.NewDeck(),
 		ioReader,
@@ -92,6 +94,7 @@ func TestWithAlwaysPlayFirstCard(t *testing.T) {
 	outputFile, _ := os.ReadFile(absOutputPath)
 	ioReader := bufio.NewReader(file)
 	ioWriter := bufio.NewWriter(&b)
+	showCardStrategy := big_2_game.NewShowCardFromInputStrategy(nil)
 	cardPatternHdr := big_2_game.NewSingleCardPatternHandelr(
 		big_2_game.NewPairCardPatternHandler(
 			big_2_game.NewStraightCardPatternHandler(
@@ -103,10 +106,10 @@ func TestWithAlwaysPlayFirstCard(t *testing.T) {
 	)
 
 	big2Game := big_2_game.NewGame(cardPatternHdr, []big_2_game.PlayerInterface{
-		big_2_game.NewHumanPlayer(ioReader, ioWriter),
-		big_2_game.NewHumanPlayer(ioReader, ioWriter),
-		big_2_game.NewHumanPlayer(ioReader, ioWriter),
-		big_2_game.NewHumanPlayer(ioReader, ioWriter),
+		big_2_game.NewHumanPlayer(ioReader, ioWriter, showCardStrategy),
+		big_2_game.NewHumanPlayer(ioReader, ioWriter, showCardStrategy),
+		big_2_game.NewHumanPlayer(ioReader, ioWriter, showCardStrategy),
+		big_2_game.NewHumanPlayer(ioReader, ioWriter, showCardStrategy),
 	},
 		big_2_game.NewDeck(),
 		ioReader,
@@ -129,6 +132,7 @@ func TestWithIllegalActions(t *testing.T) {
 	outputFile, _ := os.ReadFile(absOutputPath)
 	ioReader := bufio.NewReader(file)
 	ioWriter := bufio.NewWriter(&b)
+	showCardStrategy := big_2_game.NewShowCardFromInputStrategy(nil)
 	cardPatternHdr := big_2_game.NewSingleCardPatternHandelr(
 		big_2_game.NewPairCardPatternHandler(
 			big_2_game.NewStraightCardPatternHandler(
@@ -140,10 +144,10 @@ func TestWithIllegalActions(t *testing.T) {
 	)
 
 	big2Game := big_2_game.NewGame(cardPatternHdr, []big_2_game.PlayerInterface{
-		big_2_game.NewHumanPlayer(ioReader, ioWriter),
-		big_2_game.NewHumanPlayer(ioReader, ioWriter),
-		big_2_game.NewHumanPlayer(ioReader, ioWriter),
-		big_2_game.NewHumanPlayer(ioReader, ioWriter),
+		big_2_game.NewHumanPlayer(ioReader, ioWriter, showCardStrategy),
+		big_2_game.NewHumanPlayer(ioReader, ioWriter, showCardStrategy),
+		big_2_game.NewHumanPlayer(ioReader, ioWriter, showCardStrategy),
+		big_2_game.NewHumanPlayer(ioReader, ioWriter, showCardStrategy),
 	},
 		big_2_game.NewDeck(),
 		ioReader,
@@ -166,6 +170,7 @@ func TestWithNormalNoErrorPlay1(t *testing.T) {
 	outputFile, _ := os.ReadFile(absOutputPath)
 	ioReader := bufio.NewReader(file)
 	ioWriter := bufio.NewWriter(&b)
+	showCardStrategy := big_2_game.NewShowCardFromInputStrategy(nil)
 	cardPatternHdr := big_2_game.NewSingleCardPatternHandelr(
 		big_2_game.NewPairCardPatternHandler(
 			big_2_game.NewStraightCardPatternHandler(
@@ -177,10 +182,10 @@ func TestWithNormalNoErrorPlay1(t *testing.T) {
 	)
 
 	big2Game := big_2_game.NewGame(cardPatternHdr, []big_2_game.PlayerInterface{
-		big_2_game.NewHumanPlayer(ioReader, ioWriter),
-		big_2_game.NewHumanPlayer(ioReader, ioWriter),
-		big_2_game.NewHumanPlayer(ioReader, ioWriter),
-		big_2_game.NewHumanPlayer(ioReader, ioWriter),
+		big_2_game.NewHumanPlayer(ioReader, ioWriter, showCardStrategy),
+		big_2_game.NewHumanPlayer(ioReader, ioWriter, showCardStrategy),
+		big_2_game.NewHumanPlayer(ioReader, ioWriter, showCardStrategy),
+		big_2_game.NewHumanPlayer(ioReader, ioWriter, showCardStrategy),
 	},
 		big_2_game.NewDeck(),
 		ioReader,
@@ -203,6 +208,7 @@ func TestWithNormalNoErrorPlay2(t *testing.T) {
 	outputFile, _ := os.ReadFile(absOutputPath)
 	ioReader := bufio.NewReader(file)
 	ioWriter := bufio.NewWriter(&b)
+	showCardStrategy := big_2_game.NewShowCardFromInputStrategy(nil)
 	cardPatternHdr := big_2_game.NewSingleCardPatternHandelr(
 		big_2_game.NewPairCardPatternHandler(
 			big_2_game.NewStraightCardPatternHandler(
@@ -214,10 +220,10 @@ func TestWithNormalNoErrorPlay2(t *testing.T) {
 	)
 
 	big2Game := big_2_game.NewGame(cardPatternHdr, []big_2_game.PlayerInterface{
-		big_2_game.NewHumanPlayer(ioReader, ioWriter),
-		big_2_game.NewHumanPlayer(ioReader, ioWriter),
-		big_2_game.NewHumanPlayer(ioReader, ioWriter),
-		big_2_game.NewHumanPlayer(ioReader, ioWriter),
+		big_2_game.NewHumanPlayer(ioReader, ioWriter, showCardStrategy),
+		big_2_game.NewHumanPlayer(ioReader, ioWriter, showCardStrategy),
+		big_2_game.NewHumanPlayer(ioReader, ioWriter, showCardStrategy),
+		big_2_game.NewHumanPlayer(ioReader, ioWriter, showCardStrategy),
 	},
 		big_2_game.NewDeck(),
 		ioReader,

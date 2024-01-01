@@ -10,6 +10,7 @@ import (
 func main() {
 	ioReader := bufio.NewReader(os.Stdin)
 	ioWriter := bufio.NewWriter(os.Stdout)
+	showCardStrategy := big_2_game.NewShowCardFromInputStrategy(nil)
 	cardPatternHdr := big_2_game.NewSingleCardPatternHandelr(
 		big_2_game.NewPairCardPatternHandler(
 			big_2_game.NewStraightCardPatternHandler(
@@ -21,10 +22,10 @@ func main() {
 	)
 
 	big2Game := big_2_game.NewGame(cardPatternHdr, []big_2_game.PlayerInterface{
-		big_2_game.NewHumanPlayer(ioReader, ioWriter),
-		big_2_game.NewHumanPlayer(ioReader, ioWriter),
-		big_2_game.NewHumanPlayer(ioReader, ioWriter),
-		big_2_game.NewHumanPlayer(ioReader, ioWriter),
+		big_2_game.NewHumanPlayer(ioReader, ioWriter, showCardStrategy),
+		big_2_game.NewHumanPlayer(ioReader, ioWriter, showCardStrategy),
+		big_2_game.NewHumanPlayer(ioReader, ioWriter, showCardStrategy),
+		big_2_game.NewHumanPlayer(ioReader, ioWriter, showCardStrategy),
 	},
 		big_2_game.NewDeck(),
 		ioReader,

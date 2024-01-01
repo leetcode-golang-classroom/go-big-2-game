@@ -14,9 +14,9 @@ type HumanPlayer struct {
 	ioWriter *bufio.Writer
 }
 
-func NewHumanPlayer(ioReader *bufio.Reader, ioWriter *bufio.Writer) *HumanPlayer {
+func NewHumanPlayer(ioReader *bufio.Reader, ioWriter *bufio.Writer, showCardStrategy ShowCardStrategyInterface) *HumanPlayer {
 	return &HumanPlayer{
-		Player:   NewPlayer(),
+		Player:   NewPlayer(showCardStrategy),
 		ioReader: ioReader,
 		ioWriter: ioWriter,
 	}
@@ -31,14 +31,11 @@ func (humanPlayer *HumanPlayer) NameSelf() {
 
 func (humanPlayer *HumanPlayer) Play(topPlay []*Card, cardPatternHdr CardPatternHandlerInterface) []*Card {
 	isShowCorrect := false
-	var readline string
 	humanPlayer.DisplayName()
 	result := []*Card{}
 	for !isShowCorrect {
 		humanPlayer.DisplayOnlyHand()
-		lines, _, _ := humanPlayer.ioReader.ReadLine()
-		readline = string(lines)
-		cardsLine := strings.TrimSpace(readline)
+		cardsLine := humanPlayer.ShowCardStrategy.ShowCards(topPlay, humanPlayer.ioReader, humanPlayer.hands)
 		isPass := strings.Compare(cardsLine, "-1") == 0
 		if isPass && len(topPlay) != 0 {
 			humanPlayer.ioWriter.WriteString(fmt.Sprintf("玩家 %v PASS.\n", humanPlayer.GetName()))
@@ -84,13 +81,10 @@ func (humanPlayer *HumanPlayer) DisplayName() {
 func (humanPlayer *HumanPlayer) InitPlay(topPlay []*Card, cardPatternHdr CardPatternHandlerInterface) []*Card {
 	humanPlayer.DisplayName()
 	isShowCorrect := false
-	var readline string
 	result := []*Card{}
 	for !isShowCorrect {
 		humanPlayer.DisplayOnlyHand()
-		lines, _, _ := humanPlayer.ioReader.ReadLine()
-		readline = string(lines)
-		cardsLine := strings.TrimSpace(readline)
+		cardsLine := humanPlayer.ShowCardStrategy.ShowCards(topPlay, humanPlayer.ioReader, humanPlayer.hands)
 		isPass := strings.Compare(cardsLine, "-1") == 0
 		if isPass && len(topPlay) == 0 {
 			humanPlayer.ioWriter.WriteString("你不能在新的回合中喊 PASS\n")

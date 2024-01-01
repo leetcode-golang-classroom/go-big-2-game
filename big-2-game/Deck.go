@@ -88,7 +88,7 @@ func (deck *Deck) DealCard() *Card {
 	return card
 }
 
-func (deck *Deck) InitalDeck() {
+func (deck *Deck) InitDeck() {
 	deck.cards = []*Card{}
 	for _, suit := range Suits {
 		for _, rank := range Ranks {
