@@ -29,7 +29,7 @@ func main() {
 	},
 		big_2_game.NewDeck(),
 		ioReader,
-		big_2_game.NewShuffleFromFileStragtegy(),
+		big_2_game.NewShuffleFromRandomStrategy(),
 		ioWriter,
 	)
 	big2Game.GameFlow()

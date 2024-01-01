@@ -35,15 +35,18 @@ func (humanPlayer *HumanPlayer) Play(topPlay []*Card, cardPatternHdr CardPattern
 	result := []*Card{}
 	for !isShowCorrect {
 		humanPlayer.DisplayOnlyHand()
+		humanPlayer.ioWriter.Flush()
 		cardsLine := humanPlayer.ShowCardStrategy.ShowCards(topPlay, humanPlayer.ioReader, humanPlayer.hands)
 		isPass := strings.Compare(cardsLine, "-1") == 0
 		if isPass && len(topPlay) != 0 {
 			humanPlayer.ioWriter.WriteString(fmt.Sprintf("玩家 %v PASS.\n", humanPlayer.GetName()))
+			humanPlayer.ioWriter.Flush()
 			isShowCorrect = true
 			return []*Card{}
 		}
 		if isPass && len(topPlay) == 0 {
 			humanPlayer.ioWriter.WriteString("你不能在新的回合中喊 PASS\n")
+			humanPlayer.ioWriter.Flush()
 			isShowCorrect = false
 			continue
 		}
@@ -53,6 +56,7 @@ func (humanPlayer *HumanPlayer) Play(topPlay []*Card, cardPatternHdr CardPattern
 			humanPlayer.ExtractCards(nIdxes)
 			result = shows
 		}
+		humanPlayer.ioWriter.Flush()
 	}
 	return result
 }
@@ -84,16 +88,19 @@ func (humanPlayer *HumanPlayer) InitPlay(topPlay []*Card, cardPatternHdr CardPat
 	result := []*Card{}
 	for !isShowCorrect {
 		humanPlayer.DisplayOnlyHand()
+		humanPlayer.ioWriter.Flush()
 		cardsLine := humanPlayer.ShowCardStrategy.ShowCards(topPlay, humanPlayer.ioReader, humanPlayer.hands)
 		isPass := strings.Compare(cardsLine, "-1") == 0
 		if isPass && len(topPlay) == 0 {
 			humanPlayer.ioWriter.WriteString("你不能在新的回合中喊 PASS\n")
+			humanPlayer.ioWriter.Flush()
 			isShowCorrect = false
 			continue
 		}
 		shows, nIdxes := humanPlayer.ParesInputToShow(cardsLine)
 		if strings.Compare(shows[0].String(), "C[3]") != 0 {
 			humanPlayer.ioWriter.WriteString("此牌型不合法，請再嘗試一次。\n")
+			humanPlayer.ioWriter.Flush()
 			isShowCorrect = false
 			continue
 		}
@@ -102,6 +109,7 @@ func (humanPlayer *HumanPlayer) InitPlay(topPlay []*Card, cardPatternHdr CardPat
 			humanPlayer.ExtractCards(nIdxes)
 			result = shows
 		}
+		humanPlayer.ioWriter.Flush()
 	}
 	return result
 }
