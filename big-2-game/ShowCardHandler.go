@@ -12,6 +12,12 @@ type ShowCardHandler struct {
 	Next ShowCardHandlerInterface
 }
 
+func NewShowCardsHandler(showCardsHdr ShowCardHandlerInterface) ShowCardHandlerInterface {
+	return &ShowCardHandler{
+		showCardsHdr,
+		nil,
+	}
+}
 func (showCardHdr *ShowCardHandler) SetNext(next ShowCardHandlerInterface) {
 	showCardHdr.Next = next
 }
@@ -22,10 +28,10 @@ func (showCardHdr *ShowCardHandler) DoShowCards(topPlay []*Card, hand []*Card) s
 		if initHdr.IsMatch(topPlay, hand) {
 			return initHdr.ShowCards(topPlay, hand)
 		} else {
-			if initHdr.Next != nil {
-				initHdr = (initHdr.Next).(*ShowCardHandler)
-			} else {
+			if initHdr.Next == nil {
 				initHdr = nil
+			} else {
+				initHdr = (initHdr.Next).(*ShowCardHandler)
 			}
 		}
 	}
