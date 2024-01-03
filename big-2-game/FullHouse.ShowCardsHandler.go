@@ -25,6 +25,9 @@ func (fullHouseShowCardHdr *FullHouseShowCardsHandler) ShowCards(topPlay []*Card
 	}
 	leadingCard := fullHouseShowCardHdr.FindFullHouseLeadingCard(topPlay)
 	possibleLeadingIdx := fullHouseShowCardHdr.FindLeastIdxOfHand(leadingCard, hand)
+	if possibleLeadingIdx == -1 {
+		return "-1"
+	}
 	leadingCards := fullHouseShowCardHdr.FindLeadingCards(possibleLeadingIdx, hand)
 	if len(leadingCards) == 0 {
 		return "-1"
