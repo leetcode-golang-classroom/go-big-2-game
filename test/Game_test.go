@@ -20,7 +20,7 @@ func TestWithTestCase1(t *testing.T) {
 	ioReader := bufio.NewReader(file)
 	ioWriter := bufio.NewWriter(&b)
 	showCardStrategy := big_2_game.NewShowCardFromInputStrategy(nil)
-	cardPatternHdr := big_2_game.NewSingleCardPatternHandelr(
+	cardPatternHdr := big_2_game.NewSingleCardPatternHandler(
 		big_2_game.NewPairCardPatternHandler(
 			big_2_game.NewStraightCardPatternHandler(
 				big_2_game.NewFullHouseCardPatternHandler(
@@ -38,7 +38,7 @@ func TestWithTestCase1(t *testing.T) {
 	},
 		big_2_game.NewDeck(),
 		ioReader,
-		big_2_game.NewShuffleFromFileStragtegy(),
+		big_2_game.NewShuffleFromFileStrategy(),
 		ioWriter,
 	)
 	big2Game.GameFlow()
@@ -57,7 +57,7 @@ func TestWithFullouse(t *testing.T) {
 	ioReader := bufio.NewReader(file)
 	ioWriter := bufio.NewWriter(&b)
 	showCardStrategy := big_2_game.NewShowCardFromInputStrategy(nil)
-	cardPatternHdr := big_2_game.NewSingleCardPatternHandelr(
+	cardPatternHdr := big_2_game.NewSingleCardPatternHandler(
 		big_2_game.NewPairCardPatternHandler(
 			big_2_game.NewStraightCardPatternHandler(
 				big_2_game.NewFullHouseCardPatternHandler(
@@ -75,7 +75,7 @@ func TestWithFullouse(t *testing.T) {
 	},
 		big_2_game.NewDeck(),
 		ioReader,
-		big_2_game.NewShuffleFromFileStragtegy(),
+		big_2_game.NewShuffleFromFileStrategy(),
 		ioWriter,
 	)
 	big2Game.GameFlow()
@@ -95,7 +95,7 @@ func TestWithAlwaysPlayFirstCard(t *testing.T) {
 	ioReader := bufio.NewReader(file)
 	ioWriter := bufio.NewWriter(&b)
 	showCardStrategy := big_2_game.NewShowCardFromInputStrategy(nil)
-	cardPatternHdr := big_2_game.NewSingleCardPatternHandelr(
+	cardPatternHdr := big_2_game.NewSingleCardPatternHandler(
 		big_2_game.NewPairCardPatternHandler(
 			big_2_game.NewStraightCardPatternHandler(
 				big_2_game.NewFullHouseCardPatternHandler(
@@ -113,7 +113,7 @@ func TestWithAlwaysPlayFirstCard(t *testing.T) {
 	},
 		big_2_game.NewDeck(),
 		ioReader,
-		big_2_game.NewShuffleFromFileStragtegy(),
+		big_2_game.NewShuffleFromFileStrategy(),
 		ioWriter,
 	)
 	big2Game.GameFlow()
@@ -133,7 +133,7 @@ func TestWithIllegalActions(t *testing.T) {
 	ioReader := bufio.NewReader(file)
 	ioWriter := bufio.NewWriter(&b)
 	showCardStrategy := big_2_game.NewShowCardFromInputStrategy(nil)
-	cardPatternHdr := big_2_game.NewSingleCardPatternHandelr(
+	cardPatternHdr := big_2_game.NewSingleCardPatternHandler(
 		big_2_game.NewPairCardPatternHandler(
 			big_2_game.NewStraightCardPatternHandler(
 				big_2_game.NewFullHouseCardPatternHandler(
@@ -151,7 +151,7 @@ func TestWithIllegalActions(t *testing.T) {
 	},
 		big_2_game.NewDeck(),
 		ioReader,
-		big_2_game.NewShuffleFromFileStragtegy(),
+		big_2_game.NewShuffleFromFileStrategy(),
 		ioWriter,
 	)
 	big2Game.GameFlow()
@@ -171,7 +171,7 @@ func TestWithNormalNoErrorPlay1(t *testing.T) {
 	ioReader := bufio.NewReader(file)
 	ioWriter := bufio.NewWriter(&b)
 	showCardStrategy := big_2_game.NewShowCardFromInputStrategy(nil)
-	cardPatternHdr := big_2_game.NewSingleCardPatternHandelr(
+	cardPatternHdr := big_2_game.NewSingleCardPatternHandler(
 		big_2_game.NewPairCardPatternHandler(
 			big_2_game.NewStraightCardPatternHandler(
 				big_2_game.NewFullHouseCardPatternHandler(
@@ -189,7 +189,7 @@ func TestWithNormalNoErrorPlay1(t *testing.T) {
 	},
 		big_2_game.NewDeck(),
 		ioReader,
-		big_2_game.NewShuffleFromFileStragtegy(),
+		big_2_game.NewShuffleFromFileStrategy(),
 		ioWriter,
 	)
 	big2Game.GameFlow()
@@ -209,7 +209,7 @@ func TestWithNormalNoErrorPlay2(t *testing.T) {
 	ioReader := bufio.NewReader(file)
 	ioWriter := bufio.NewWriter(&b)
 	showCardStrategy := big_2_game.NewShowCardFromInputStrategy(nil)
-	cardPatternHdr := big_2_game.NewSingleCardPatternHandelr(
+	cardPatternHdr := big_2_game.NewSingleCardPatternHandler(
 		big_2_game.NewPairCardPatternHandler(
 			big_2_game.NewStraightCardPatternHandler(
 				big_2_game.NewFullHouseCardPatternHandler(
@@ -227,7 +227,7 @@ func TestWithNormalNoErrorPlay2(t *testing.T) {
 	},
 		big_2_game.NewDeck(),
 		ioReader,
-		big_2_game.NewShuffleFromFileStragtegy(),
+		big_2_game.NewShuffleFromFileStrategy(),
 		ioWriter,
 	)
 	big2Game.GameFlow()

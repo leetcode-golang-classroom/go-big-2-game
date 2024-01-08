@@ -9,7 +9,7 @@ type ShuffleFromFileStrategy struct {
 	ShuffleStrategy
 }
 
-func NewShuffleFromFileStragtegy() ShuffleStrategy {
+func NewShuffleFromFileStrategy() ShuffleStrategy {
 	return &ShuffleFromFileStrategy{}
 }
 func (shufflefile *ShuffleFromFileStrategy) Shuffle(deck DeckInterface, reader *bufio.Reader) {

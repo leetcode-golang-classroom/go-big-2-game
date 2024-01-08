@@ -23,7 +23,7 @@ func main() {
 	)
 	aiShowCardStrategy := big_2_game.NewShowCardFromAIStrategy(showCardHdr)
 	showCardStrategy := big_2_game.NewShowCardFromInputStrategy(nil)
-	cardPatternHdr := big_2_game.NewSingleCardPatternHandelr(
+	cardPatternHdr := big_2_game.NewSingleCardPatternHandler(
 		big_2_game.NewPairCardPatternHandler(
 			big_2_game.NewStraightCardPatternHandler(
 				big_2_game.NewFullHouseCardPatternHandler(

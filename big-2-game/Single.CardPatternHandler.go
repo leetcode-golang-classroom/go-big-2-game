@@ -9,7 +9,7 @@ type SingleCardPatternHandler struct {
 	CardPatternHandlerInterface
 }
 
-func NewSingleCardPatternHandelr(next CardPatternHandlerInterface) CardPatternHandlerInterface {
+func NewSingleCardPatternHandler(next CardPatternHandlerInterface) CardPatternHandlerInterface {
 	singleCardPatternHdr := &SingleCardPatternHandler{}
 	cardPatternHdr := NewCardPatternHandler(singleCardPatternHdr)
 	cardPatternHdr.SetNext(next)
