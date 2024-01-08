@@ -21,7 +21,7 @@ func (straightShowCardHdr *StraightShowCardsHandler) ShowCards(topPlay []*Card, 
 		if strings.Compare(hand[0].String(), "C3") == 0 {
 			return straightShowCardHdr.FindStraightWithClub3(hand)
 		}
-		straight := straightShowCardHdr.FindLeastStraigt(hand)
+		straight := straightShowCardHdr.FindLeastStraight(hand)
 		if len(straight) == 0 {
 			return "-1"
 		}
@@ -91,7 +91,7 @@ func (straightShowCardHdr *StraightShowCardsHandler) FindLeadingCardIdx(topPlay 
 	return -1
 }
 
-func (straightShowCardHdr *StraightShowCardsHandler) FindLeastStraigt(hand []*Card) []int {
+func (straightShowCardHdr *StraightShowCardsHandler) FindLeastStraight(hand []*Card) []int {
 	if len(hand) < 5 {
 		return []int{}
 	}
