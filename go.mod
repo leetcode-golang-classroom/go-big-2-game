@@ -1,3 +1,3 @@
 module github.com/leetcode-golang-classroom/go-big-2-game
 
-go 1.20
+go 1.22.4
